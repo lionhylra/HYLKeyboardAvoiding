@@ -70,7 +70,6 @@ static const double kAnimationDuration = 0.3;
 }
 
 - (void)keyboardAvoiding_keyboardWillShow:(NSNotification *)notification{
-    const CGFloat kOffset = 15.0;
     CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     if (self.keyboardTopInView == 0) {
         [UIView animateWithDuration:kAnimationDuration animations:^{
@@ -81,7 +80,7 @@ static const double kAnimationDuration = 0.3;
     }else{
         [UIView animateWithDuration:kAnimationDuration animations:^{
             CGRect frame = self.view.frame;
-            frame.origin.y = -(self.keyboardTopInView - (frame.size.height - keyboardSize.height) + kOffset);//move the view upwards to the given height
+            frame.origin.y = -(self.keyboardTopInView - (frame.size.height - keyboardSize.height));//move the view upwards to the given height
             if (frame.origin.y > 0) {
                 frame.origin.y = 0;
             }
