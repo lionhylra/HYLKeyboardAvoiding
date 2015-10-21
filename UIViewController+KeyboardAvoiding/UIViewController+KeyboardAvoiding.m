@@ -39,13 +39,13 @@ static const double kAnimationDuration = 0.3;
     [self.view addGestureRecognizer:tap];
     
     [self aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo, BOOL animated){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardAvoiding_keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardAvoiding_keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:aspectInfo.instance selector:@selector(keyboardAvoiding_keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:aspectInfo.instance selector:@selector(keyboardAvoiding_keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }error:NULL];
     
     [self aspect_hookSelector:@selector(viewWillDisappear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> aspectInfo, BOOL animated){
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:aspectInfo.instance name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:aspectInfo.instance name:UIKeyboardWillHideNotification object:nil];
     }error:NULL];
 }
 
